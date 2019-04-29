@@ -35,6 +35,11 @@
 </div>
 
 <div class="container">
+    <label>
+        <select th:field="*{category}">
+            <option th:value="'americanSable'" th:text="AmericanSable"></option>
+        </select>
+    </label>
     <div class="card">
         <strong th:text="${category.name}">Category Title</strong>
     </div>
