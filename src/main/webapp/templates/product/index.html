@@ -36,15 +36,20 @@
 
 <div class="container">
     <label>
-        <select th:field="*{category}">
-            <option th:value="'1'" th:text="Alaska"></option>
-            <option th:value="'2'" th:text="Angora"></option>
-            <option th:value="'3'" th:text="Californian"></option>
-        </select>
-    </label>
-    <div class="card">
-        <strong th:text="${category.name}">Category Title</strong>
+    <div class="btn-group">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categories
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+            <button class="dropdown-item" type="button">Alaska</button>
+            <button class="dropdown-item" type="button">Angora</button>
+            <button class="dropdown-item" type="button">Californian</button>
+        </div>
     </div>
+    </label>
+    <!--<div class="card">
+        <strong th:text="${category.name}">Category Title</strong>
+    </div>-->
 
     <div id="products" class="row">
         <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
