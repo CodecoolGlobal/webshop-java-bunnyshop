@@ -32,4 +32,26 @@ public class Order {
         return instance;
     }
 
+    public void addProduct(Product product) {
+        OrderList orderList = getOrderListByProductId(product.getId());
+        if (orderList == null) {
+            String orderListName = "Order list " + product.getName();
+            String orderListDescription = "Some " + product.getName() + "s";
+            OrderList newOrderList = new OrderList(product, orderListName, orderListDescription);
+            items.add(newOrderList);
+        } else {
+            orderList.add(product);
+        }
+        totalSum += product.getDefaultPrice();
+    }
+
+    public void removeProduct(Product product) {
+        OrderList orderList = getOrderListByProductId(product.getId());
+        orderList.remove(product);
+        totalSum -= product.getDefaultPrice();
+        if (orderList.isEmpty()) {
+            items.remove(orderList);
+        }
+    }
+
 }
