@@ -71,7 +71,7 @@ public class OrderController extends HttpServlet {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         Product currentProduct = productDataStore.find(productId);
 
-        OrderList currentLineItem = currentOrder.getLineItemByProductId(productId);
+        OrderList currentLineItem = currentOrder.getOrderListByProductId(productId);
 
         if (change > 0) {
             currentOrder.addProduct(currentProduct);
