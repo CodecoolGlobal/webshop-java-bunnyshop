@@ -44,6 +44,12 @@ public class Order extends BaseModel{
         totalSum += product.getDefaultPrice();
     }
 
+
+    public List<OrderList> getItems() {
+        return items;
+    }
+
+
     public void removeProduct(Product product) {
         OrderList orderList = getOrderListByProductId(product.getId());
         orderList.remove(product);
