@@ -3,7 +3,7 @@ package com.codecool.shop.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Order {
+public class Order extends BaseModel{
 
     private static Order instance = null;
 
@@ -20,7 +20,6 @@ public class Order {
         super(name, description);
         this.id = id;
         this.totalSum = totalSum;
-        this.contactInfo = contactInfo;
     }
 
     public static Order getInstance() {
