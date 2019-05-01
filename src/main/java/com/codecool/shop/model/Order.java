@@ -54,7 +54,7 @@ public class Order {
         }
     }
 
-    public OrderList getLineItemByProductId(int productId) {
+    public OrderList getOrderListByProductId(int productId) {
         return items.stream()
                 .filter(item -> item.getProductId() == productId)
                 .findFirst()
