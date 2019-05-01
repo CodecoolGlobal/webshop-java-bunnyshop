@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="col-md-3 d-flex align-items-center justify-content-end">
-                <span class="lineitem-price" th:text="${#numbers.formatDecimal(orderList.getTotalPrice(), 0, 2, 'POINT')}"
+                <span class="order-list-price" th:text="${#numbers.formatDecimal(orderList.getTotalPrice(), 0, 2, 'POINT')}"
                       th:attr="data-unit-price=${orderList.getUNIT_PRICE()}"
                       th:id="'product-' + ${orderList.getProductId()} + '-price'">
                     Price

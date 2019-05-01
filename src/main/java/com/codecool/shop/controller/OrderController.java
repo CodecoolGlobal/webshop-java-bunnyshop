@@ -12,7 +12,6 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -71,7 +70,7 @@ public class OrderController extends HttpServlet {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         Product currentProduct = productDataStore.find(productId);
 
-        OrderList currentLineItem = currentOrder.getOrderListByProductId(productId);
+        OrderList orderListItem = currentOrder.getOrderListByProductId(productId);
 
         if (change > 0) {
             currentOrder.addProduct(currentProduct);
@@ -79,7 +78,7 @@ public class OrderController extends HttpServlet {
             currentOrder.removeProduct(currentProduct);
         }
 
-        String dataToSend = "{\"numberOfProducts\": " + currentLineItem.getNumberOfProducts() + "}";
+        String dataToSend = "{\"numberOfProducts\": " + orderListItem.getNumberOfProducts() + "}";
         resp.getWriter().write(dataToSend);
     }
 }

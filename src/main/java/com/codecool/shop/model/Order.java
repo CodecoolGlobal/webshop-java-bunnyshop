@@ -9,7 +9,7 @@ public class Order extends BaseModel{
 
     private List<OrderList> items = new ArrayList<>();
     private int totalSum;
-    private final String CURRENCY = "Credits";
+    private final String CURRENCY = "USD";
 
 
     public Order(String orderName, String orderDescription) {
@@ -88,14 +88,6 @@ public class Order extends BaseModel{
                 .append("total sum: " + this.totalSum + ",")
                 .append("currency: " + this.CURRENCY);
         return builder.toString();
-    }
-
-    public String getCurrency() {
-        return CURRENCY;
-    }
-
-    public void resetInstance(){
-        instance =null;
     }
 
 }
