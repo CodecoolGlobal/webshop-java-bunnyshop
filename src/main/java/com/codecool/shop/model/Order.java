@@ -54,4 +54,43 @@ public class Order {
         }
     }
 
+    public OrderList getLineItemByProductId(int productId) {
+        return items.stream()
+                .filter(item -> item.getProductId() == productId)
+                .findFirst()
+                .orElse(null);
+    }
+
+    public int getTotalNumberOfOrderedProducts() {
+        int numberOfOrderedProducts = 0;
+        for (int i = 0; i < items.size(); i++) {
+            numberOfOrderedProducts += items.get(i).getNumberOfProducts();
+        }
+        return numberOfOrderedProducts;
+    }
+
+    public float getTotalSum(){
+        return totalSum;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("id: " + this.id + "," )
+                .append("name: " + this.name + ",")
+                .append("description: " + this.description + ",")
+                .append("items: " + this.items + ",")
+                .append("total sum: " + this.totalSum + ",")
+                .append("currency: " + this.CURRENCY);
+        return builder.toString();
+    }
+
+    public String getCurrency() {
+        return CURRENCY;
+    }
+
+    public void resetInstance(){
+        instance =null;
+    }
+
 }
