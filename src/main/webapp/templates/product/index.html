@@ -4,6 +4,9 @@
     <meta charset="utf-8" />
     <meta name="author" content="Codecool" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <script th:src="@{/static/scripts/item_collector.js}" defer></script>
+    <script th:src="@{/static/scripts/filter.js}" defer></script>
+    <script th:src="@{/static/scripts/main.js}" defer></script>
 
     <title>Codecool Shop</title>
 
@@ -35,18 +38,52 @@
 </div>
 
 <div class="container">
-    <label>
-    <div class="btn-group">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Categories
-        </button>
-        <div class="dropdown-menu dropdown-menu-right">
-            <button class="dropdown-item" type="button">Alaska</button>
-            <button class="dropdown-item" type="button">Angora</button>
-            <button class="dropdown-item" type="button">Californian</button>
+
+    <div class="container justify-content-between d-flex" id="buttons-on-top">
+        <div>
+            <div class="btn-group">
+                <div class="dropdown" id="category-filter-dropdown">
+                    <button class="btn btn-primary dropdown-toggle" id="category-filter-button"
+                            type="button" data-toggle="dropdown"
+                            th:attr="data-selected-id=${selectedCategory ? selectedCategory.getId() : 0}"
+                            th:text="${selectedCategory ? selectedCategory.getName() : 'Category'}">
+                        Category
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item category-dropdown-item" data-filter-type="category"
+                           th:each="cat : ${categories}" th:text="${cat.getName()}"
+                           th:attr="data-id=${cat.getId()}">
+                            Category
+                        </a>
+                    </div>
+                </div>
+                <div class="dropdown" id="supplier-filter-dropdown">
+                    <button class="btn btn-primary dropdown-toggle" id="supplier-filter-button"
+                            type="button" data-toggle="dropdown"
+                            th:attr="data-selected-id=${selectedSupplier ? selectedSupplier.getId() : 0}"
+                            th:text="${selectedSupplier ? selectedSupplier.getName() : 'Supplier'}">
+                        Supplier
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item supplier-dropdown-item" data-filter-type="supplier"
+                           th:each="sup : ${suppliers}" th:text="${sup.getName()}"
+                           th:attr="data-id=${sup.getId()}">
+                            Supplier
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-danger" id="filter-button">Filter</button>
+                <a th:href="@{/}" class="btn btn-warning" id="clear-filter-button">Clear filters</a>
+            </div>
+        </div>
+        <div>
+            <a class="btn btn-group btn-success" id="display-cart-button" th:href="@{/cart}">
+                <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;<i id="number-of-items-in-cart" th:text="${numberOfProductsInCart}">0</i>
+            </a>
         </div>
     </div>
-    </label>
     <!--<div class="card">
         <strong th:text="${category.name}">Category Title</strong>
     </div>-->

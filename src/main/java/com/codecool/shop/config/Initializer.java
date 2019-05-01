@@ -35,7 +35,7 @@ public class Initializer implements ServletContextListener {
         ProductCategory angora = new ProductCategory("Angora","animal", "The Angora rabbit (Turkish: Ankara tavşanı), which is one of the oldest types of domestic rabbit, is bred for the long fibers of its coat, known as Angora wool, that are gathered by shearing, combing, or plucking.");
         productCategoryDataStore.add(angora);
         ProductCategory californian = new ProductCategory("Californian", "animal", "The Californian, also known as the California White, is a breed of domestic rabbit originally developed for the fur and meat industries by George S. West of Lynnwood, California, starting in 1923.");
-
+        productCategoryDataStore.add(californian);
 
         //setting up products and printing it
         productDataStore.add(new Product("Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", alaska, amazon));
