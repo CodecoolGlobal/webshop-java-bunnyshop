@@ -113,3 +113,9 @@ body{
 {
     background-color: #3498DB;
 }
+
+.product-images
+{
+    max-width: 400px;
+    max-height: 250px;
+}
