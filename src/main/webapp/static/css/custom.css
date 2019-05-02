@@ -60,3 +60,26 @@
 {
     margin: 0 0 11px;
 }
+
+body{
+    background-color: aliceblue;
+}
+
+.footer-card
+{
+    text-align: center;
+}
+
+.header-img
+{
+    max-height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.header-img-background
+{
+    background-color: #ECF0F1;
+}

@@ -6,9 +6,10 @@
     <title>Cart</title>
 </head>
 <body>
-<div class="main-title jumbotron text-center">
-    <h1>Collected Items</h1>
+<div class="header-img-background">
+    <img src="/static/facebook_cover_photo_1.png" alt="bunnyshop" class="header-img">
 </div>
+<p></p>
 <div class="container">
     <div class="row line-item" th:each="orderList : ${order.getItems()}">
         <div class="col-md-6 col-sm-12 d-flex align-items-center" th:text="${orderList.getProductName()}">
