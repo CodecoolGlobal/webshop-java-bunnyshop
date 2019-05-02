@@ -14,7 +14,7 @@ amountSetter = {
 
     setOrderTotal: function () {
         let sum = 0;
-        let priceElements = document.querySelectorAll(".lineitem-price");
+        let priceElements = document.querySelectorAll(".order-list-price");
         for (let element of priceElements) {
             sum += parseFloat(element.innerText);
         }
