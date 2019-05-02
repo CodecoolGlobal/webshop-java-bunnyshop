@@ -99,12 +99,7 @@ body{
     color: white;
 }
 
-.decrease-button
-{
-    background-color: #3498DB;
-}
-
-.amount-button
+.decrease-button, .amount-button
 {
     background-color: #3498DB;
 }
