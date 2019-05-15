@@ -1,17 +1,17 @@
 package com.codecool.shop.model;
 
+import com.codecool.shop.customer.CustomerContactInfo;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order extends BaseModel{
 
     private static Order instance = null;
-
+    private final String CURRENCY = "USD";
     private List<OrderList> items = new ArrayList<>();
     private int totalSum;
-    private final String CURRENCY = "USD";
-
-
+    private CustomerContactInfo customerContactInfo;
     public Order(String orderName, String orderDescription) {
         super(orderName, orderDescription);
     }
@@ -22,6 +22,14 @@ public class Order extends BaseModel{
         this.totalSum = totalSum;
     }
 
+
+    public Order(int id, String name, String description, int totalSum, String currency, CustomerContactInfo customerContactInfo, List<OrderList> orderList) {
+        super(name, description);
+        this.id = id;
+        this.totalSum = totalSum;
+        this.customerContactInfo = customerContactInfo;
+    }
+
     public static Order getInstance() {
         if (instance == null) {
             String orderName = "Current order";
@@ -29,6 +37,26 @@ public class Order extends BaseModel{
             instance = new Order(orderName, description);
         }
         return instance;
+    }
+
+    public String getCURRENCY() {
+        return CURRENCY;
+    }
+
+    public CustomerContactInfo getCustomerContactInfo() {
+        return customerContactInfo;
+    }
+
+    public int getContactInfoId() {
+        return customerContactInfo.getId();
+    }
+
+    public void setContactInfoId(int id) {
+        customerContactInfo.setId(id);
+    }
+
+    public void resetInstance(){
+        instance =null;
     }
 
     public void addProduct(Product product) {
