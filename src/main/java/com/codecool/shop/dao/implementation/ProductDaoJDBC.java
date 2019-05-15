@@ -83,4 +83,23 @@ public class ProductDaoJDBC implements ProductDao {
 
     }
 
+    private Product getProductObj(ResultSet resultSet) throws SQLException {
+        int productId = resultSet.getInt("id");
+        String name = resultSet.getString("name");
+        Float defaultPrice = resultSet.getFloat("default_price");
+        String currencyString = resultSet.getString("currency_string");
+        String description = resultSet.getString("description");
+        int productCategoryId = resultSet.getInt("product_category_id");
+        int supplierId = resultSet.getInt("supplier_id");
+
+        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoJDBC.getInstance();
+        SupplierDao supplierDataStore = SupplierDaoJDBC.getInstance();
+
+        ProductCategory productCategory = productCategoryDataStore.find(productCategoryId);
+        Supplier supplier = supplierDataStore.find(supplierId);
+
+        return new Product(productId, name, description, defaultPrice, currencyString, productCategory, supplier);
+    }
+
+
 }
