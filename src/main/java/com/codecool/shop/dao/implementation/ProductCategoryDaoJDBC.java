@@ -75,6 +75,7 @@ public class ProductCategoryDaoJDBC implements ProductCategoryDao{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return resultList;
 
     }
