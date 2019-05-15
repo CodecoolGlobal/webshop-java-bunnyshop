@@ -1,0 +1,24 @@
+package com.codecool.shop.database;
+
+import java.sql.*;
+
+public class dbCreator {
+
+    private static final String DATABASE = "jdbc:postgresql://localhost:5432/bunnyshop";
+    private static final String DB_USER = System.getenv("POSTGRES_DB_USER");
+    private static final String DB_PASSWORD = System.getenv("POSTGRES_DB_PASSWORD");
+
+    public static Connection getConnection() {
+        try {
+            return DriverManager.getConnection(
+                    DATABASE,
+                    DB_USER,
+                    DB_PASSWORD);
+        } catch (SQLException e) {
+            System.err.println("ERROR: Connection error.");
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
+
