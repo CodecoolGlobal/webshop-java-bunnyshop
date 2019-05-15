@@ -26,7 +26,66 @@ public class ProductCategoryDaoJDBC implements ProductCategoryDao{
         return instance;
     }
 
+    @Override
+    public void add(ProductCategory category) {
 
+    }
+
+    @Override
+    public ProductCategory find(int id) {
+        String query = "SELECT * FROM product_category " +
+                "WHERE id = " + id + ";";
+
+        try(Connection connection = dbCreator.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query)
+        ) {
+            resultSet.next();
+            ProductCategory productCategory = getProductCategoryObj(resultSet);
+            return productCategory;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    @Override
+    public void remove(int id) {
+
+    }
+
+    @Override
+    public List<ProductCategory> getAll() {
+        String query = "SELECT * FROM product_category;";
+
+        List<ProductCategory> resultList = new ArrayList<>();
+
+        try(Connection connection = dbCreator.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query)
+        ) {
+            while (resultSet.next()) {
+                ProductCategory productCategory = getProductCategoryObj(resultSet);
+
+                resultList.add(productCategory);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultList;
+
+    }
+
+    private ProductCategory getProductCategoryObj(ResultSet resultSet) throws SQLException {
+        int productCategoryId = resultSet.getInt("id");
+        String name = resultSet.getString("name");
+        String department = resultSet.getString("department");
+        String description = resultSet.getString("description");
+        return new ProductCategory(productCategoryId, name, department, description);
+    }
 
 
 }
