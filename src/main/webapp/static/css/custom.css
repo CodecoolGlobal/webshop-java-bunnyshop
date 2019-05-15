@@ -114,3 +114,34 @@ body{
     max-width: 400px;
     max-height: 250px;
 }
+
+#filter-button:hover
+{
+    background-color: #d9bcdb;
+}
+
+#filter-button
+{
+    background-color: #ecd0ee;
+    color: black;
+}
+
+.btn-warning
+{
+    border-color: black;
+}
+
+.btn-warning:hover
+{
+    border-color: black;
+}
+
+#clear-filter-button
+{
+    background-color: bisque;
+}
+
+#clear-filter-button:hover
+{
+    background-color: #e2c5a6;
+}
