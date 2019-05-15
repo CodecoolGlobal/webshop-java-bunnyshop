@@ -35,4 +35,52 @@ public class ProductDaoJDBC implements ProductDao {
 
     }
 
+    @Override
+    public Product find(int id) {
+        String query = "SELECT * FROM product " +
+                "WHERE id = " + id + ";";
+
+        try(Connection connection = dbCreator.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query)
+        ) {
+            resultSet.next();
+            Product product = getProductObj(resultSet);
+            return product;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public void remove(int id) {
+
+    }
+
+    @Override
+    public List<Product> getAll() {
+        String query = "SELECT * FROM product;";
+
+        List<Product> resultList = new ArrayList<>();
+
+
+        try(Connection connection = dbCreator.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+        ) {
+
+            while (resultSet.next()) {
+                Product product = getProductObj(resultSet);
+                resultList.add(product);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultList;
+
+    }
+
 }
