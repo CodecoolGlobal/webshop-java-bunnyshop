@@ -20,6 +20,8 @@ public class Product extends BaseModel {
     public Product(int productId, String name, String description, float defaultPrice, String currencyString, ProductCategory productCategory, Supplier supplier) {
         super(name, description);
         this.id = productId;
+        System.out.println(productId);
+        System.out.println(productCategory);
         this.setPrice(defaultPrice, currencyString);
         this.setProductCategory(productCategory);
         this.setSupplier(supplier);
@@ -56,7 +58,7 @@ public class Product extends BaseModel {
 
     public void setProductCategory(ProductCategory productCategory) {
         this.productCategory = productCategory;
-        this.productCategory.addProduct(this);
+        //this.productCategory.addProduct(this);
     }
 
     public Supplier getSupplier() {
@@ -65,7 +67,7 @@ public class Product extends BaseModel {
 
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
-        this.supplier.addProduct(this);
+        //this.supplier.addProduct(this);
     }
 
     @Override

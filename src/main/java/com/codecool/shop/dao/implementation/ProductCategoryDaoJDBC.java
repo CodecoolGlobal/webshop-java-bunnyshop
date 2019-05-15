@@ -42,6 +42,7 @@ public class ProductCategoryDaoJDBC implements ProductCategoryDao{
         ) {
             resultSet.next();
             ProductCategory productCategory = getProductCategoryObj(resultSet);
+            System.out.println(productCategory);
             return productCategory;
 
         } catch (SQLException e) {
