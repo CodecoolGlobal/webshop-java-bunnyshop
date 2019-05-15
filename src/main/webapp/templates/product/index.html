@@ -1,48 +1,73 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <meta name="author" content="Codecool" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <div th:replace="header.html :: header"></div>
+    <script th:src="@{/static/scripts/item_collector.js}" defer></script>
+    <script th:src="@{/static/scripts/filter.js}" defer></script>
+    <script th:src="@{/static/scripts/main.js}" defer></script>
 
-    <title>Codecool Shop</title>
 
-    <!-- Bootstrap components -->
-    <!-- Latest compiled and minified Jquery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
-    <!--Latest compiled and minified Popper -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <title>Bunny Shop</title>
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
-    <!-- Latest compiled and minified CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <!-- End of Bootstrap components -->
-
-    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
 </head>
 
 <body>
-
-<div class="jumbotron text-center">
-    <h1>Codecool Shop</h1>
+<div class="header-img-background">
+    <img src="/static/facebook_cover_photo_1.png" alt="bunnyshop" class="header-img">
 </div>
-
+<p></p>
 <div class="container">
-    <div class="card">
-        <strong th:text="${category.name}">Category Title</strong>
+    <div class="container justify-content-between d-flex" id="buttons-on-top">
+        <div>
+            <div class="btn-group">
+                <div class="dropdown" id="category-filter-dropdown">
+                    <button class="btn btn-primary dropdown-toggle" id="category-filter-button"
+                            type="button" data-toggle="dropdown"
+                            th:attr="data-selected-id=${selectedCategory ? selectedCategory.getId() : 0}"
+                            th:text="${selectedCategory ? selectedCategory.getName() : 'Category'}">
+                        Category
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item category-dropdown-item" data-filter-type="category"
+                           th:each="cat : ${categories}" th:text="${cat.getName()}"
+                           th:attr="data-id=${cat.getId()}">
+                            Category
+                        </a>
+                    </div>
+                </div>
+                <div class="dropdown" id="supplier-filter-dropdown">
+                    <button class="btn btn-primary dropdown-toggle" id="supplier-filter-button"
+                            type="button" data-toggle="dropdown"
+                            th:attr="data-selected-id=${selectedSupplier ? selectedSupplier.getId() : 0}"
+                            th:text="${selectedSupplier ? selectedSupplier.getName() : 'Supplier'}">
+                        Supplier
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item supplier-dropdown-item" data-filter-type="supplier"
+                           th:each="sup : ${suppliers}" th:text="${sup.getName()}"
+                           th:attr="data-id=${sup.getId()}">
+                            Supplier
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-danger" id="filter-button">Filter</button>
+                <a th:href="@{/}" class="btn btn-warning" id="clear-filter-button">Clear filters</a>
+            </div>
+        </div>
+        <div>
+            <a class="btn btn-group btn-success" id="display-cart-button" th:href="@{/cart}">
+                <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;<i id="number-of-items-in-cart" th:text="${numberOfProductsInCart}">0</i>
+            </a>
+        </div>
     </div>
-
+    <p></p>
     <div id="products" class="row">
         <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
             <div class="card">
-                <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
+                <img class="product-images" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
                 <div class="card-header">
                     <h4 class="card-title" th:text="${prod.name}">Product name</h4>
                     <p class="card-text" th:text="${prod.description}">Product description... </p>
@@ -51,8 +76,8 @@
                     <div class="card-text">
                         <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                     </div>
-                    <div class="card-text">
-                        <a class="btn btn-success" href="#">Add to cart</a>
+                    <div class="card-text-addtocart">
+                        <a class="btn btn-primary add-to-cart" th:attr="data-product-id=${prod.getId()}">Add to cart</a>
                     </div>
                 </div>
             </div>

@@ -60,3 +60,57 @@
 {
     margin: 0 0 11px;
 }
+
+body{
+    background-color: aliceblue;
+}
+
+.footer-card
+{
+    text-align: center;
+}
+
+.header-img
+{
+    max-height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.header-img-background
+{
+    background-color: #ECF0F1;
+}
+
+.dropdown-toggle
+{
+    background-color: #3498DB;
+}
+
+.add-to-cart
+{
+    background-color: #3498DB;
+}
+
+.card-text-addtocart
+{
+    color: white;
+}
+
+.decrease-button, .amount-button
+{
+    background-color: #3498DB;
+}
+
+.btn-info
+{
+    background-color: #3498DB;
+}
+
+.product-images
+{
+    max-width: 400px;
+    max-height: 250px;
+}
