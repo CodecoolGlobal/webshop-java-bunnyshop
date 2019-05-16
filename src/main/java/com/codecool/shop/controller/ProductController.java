@@ -1,8 +1,12 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.database.dbCreator;
 import com.codecool.shop.dao.OrderDao;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.implementation.ProductCategoryDaoJDBC;
+import com.codecool.shop.dao.implementation.ProductDaoJDBC;
+import com.codecool.shop.dao.implementation.SupplierDaoJDBC;
 import com.codecool.shop.dao.implementation.OrderDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.dao.SupplierDao;
@@ -27,10 +31,23 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
-        OrderDao orderDataStore = OrderDaoMem.getInstance();
+        ProductDao productDataStore;
+        ProductCategoryDao productCategoryDataStore;
+        SupplierDao supplierDataStore;
+        OrderDao orderDataStore;
+
+        if(dbCreator.getConnection() != null) {
+            productDataStore = ProductDaoJDBC.getInstance();
+            productCategoryDataStore = ProductCategoryDaoJDBC.getInstance();
+            supplierDataStore = SupplierDaoJDBC.getInstance();
+            orderDataStore = OrderDaoMem.getInstance();
+        } else {
+            productDataStore = ProductDaoMem.getInstance();
+            productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+            supplierDataStore = SupplierDaoMem.getInstance();
+            orderDataStore = OrderDaoMem.getInstance();
+        }
+
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());

@@ -1,6 +1,7 @@
 package com.codecool.shop.model;
 
 import java.util.Currency;
+import com.codecool.shop.database.dbCreator;
 
 public class Product extends BaseModel {
 
@@ -15,6 +16,16 @@ public class Product extends BaseModel {
         this.setPrice(defaultPrice, currencyString);
         this.setSupplier(supplier);
         this.setProductCategory(productCategory);
+    }
+
+    public Product(int productId, String name, String description, float defaultPrice, String currencyString, ProductCategory productCategory, Supplier supplier) {
+        super(name, description);
+        this.id = productId;
+        System.out.println(productId);
+        System.out.println(productCategory);
+        this.setPrice(defaultPrice, currencyString);
+        this.setProductCategory(productCategory);
+        this.setSupplier(supplier);
     }
 
     public float getDefaultPrice() {
@@ -48,7 +59,10 @@ public class Product extends BaseModel {
 
     public void setProductCategory(ProductCategory productCategory) {
         this.productCategory = productCategory;
-        this.productCategory.addProduct(this);
+        if(dbCreator.getConnection() == null) {
+            this.productCategory.addProduct(this);
+        }
+
     }
 
     public Supplier getSupplier() {
@@ -57,7 +71,9 @@ public class Product extends BaseModel {
 
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
-        this.supplier.addProduct(this);
+        if(dbCreator.getConnection() == null) {
+            this.supplier.addProduct(this);
+        }
     }
 
     @Override
