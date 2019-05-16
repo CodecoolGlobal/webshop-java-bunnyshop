@@ -11,7 +11,6 @@ public class dbCreator {
     public static Connection getConnection() {
         try {
             Connection connection = DriverManager.getConnection(DATABASE, DB_USER, DB_PASSWORD);
-            boolean reachable = connection.isValid(10);
             return DriverManager.getConnection(
                     DATABASE,
                     DB_USER,

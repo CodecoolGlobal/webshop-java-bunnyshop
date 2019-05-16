@@ -32,7 +32,13 @@ public class ProductCategoryDaoJDBC implements ProductCategoryDao{
     }
 
     @Override
-    public ProductCategory find(int id) {
+    public ProductCategory find(int id) throws IllegalArgumentException {
+
+        if (id < 1) {
+            System.out.println("Id cannot be smaller than 1");
+            throw new IllegalArgumentException("id cannot be lower than 1");
+        }
+
         String query = "SELECT * FROM product_category " +
                 "WHERE id = " + id + ";";
 
