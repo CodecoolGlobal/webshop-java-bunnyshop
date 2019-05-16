@@ -16,28 +16,28 @@ public class DaoJdbcTest {
 
 
     @Test
-    public void productGetAllTest() {
+    void productGetAllTest() {
         ProductDaoJDBC productDaoJDBC = ProductDaoJDBC.getInstance();
         List<Product> products = productDaoJDBC.getAll();
         assertEquals(9, products.size());
     }
 
     @Test
-    public void supplierGetAllTest() {
+    void supplierGetAllTest() {
         SupplierDaoJDBC supplierDaoJDBC = SupplierDaoJDBC.getInstance();
         List<Supplier> suppliers = supplierDaoJDBC.getAll();
         assertEquals(5, suppliers.size());
     }
 
     @Test
-    public void productCategoryGetAllTest() {
+    void productCategoryGetAllTest() {
         ProductCategoryDaoJDBC productCategoryDaoJDBC = ProductCategoryDaoJDBC.getInstance();
         List<ProductCategory> productCategories = productCategoryDaoJDBC.getAll();
         assertEquals(5, productCategories.size());
     }
 
     @Test
-    public void getproductByIdTest() {
+    void getproductByIdTest() {
         ProductDaoJDBC productDaoJDBC = ProductDaoJDBC.getInstance();
         Product product = productDaoJDBC.find(1);
         assertEquals("Black Alaska", product.getName());
@@ -47,7 +47,7 @@ public class DaoJdbcTest {
     }
 
     @Test
-    public void getSupplierByIdTest() {
+    void getSupplierByIdTest() {
         SupplierDaoJDBC supplierDaoJDBC = SupplierDaoJDBC.getInstance();
         Supplier supplier = supplierDaoJDBC.find(1);
         assertEquals("Perfect Bunnies", supplier.getName());
@@ -55,7 +55,7 @@ public class DaoJdbcTest {
     }
 
     @Test
-    public void getProductCategoryById() {
+    void getProductCategoryById() {
         ProductCategoryDaoJDBC productCategoryDaoJDBC = ProductCategoryDaoJDBC.getInstance();
         ProductCategory productCategory = productCategoryDaoJDBC.find(1);
         assertEquals("Alaska", productCategory.getName());
@@ -64,7 +64,7 @@ public class DaoJdbcTest {
     }
 
     @Test
-    public void invalidProductFindParameter() throws IllegalArgumentException {
+    void invalidProductFindParameter() throws IllegalArgumentException {
         ProductDaoJDBC productDaoJDBC = ProductDaoJDBC.getInstance();
         assertThrows(IllegalArgumentException.class, () -> {
             productDaoJDBC.find(-1);
@@ -72,7 +72,7 @@ public class DaoJdbcTest {
     }
 
     @Test
-    public void invalidSupplierFindParameter() throws IllegalArgumentException {
+    void invalidSupplierFindParameter() throws IllegalArgumentException {
         SupplierDaoJDBC supplierDaoJDBC = SupplierDaoJDBC.getInstance();
         assertThrows(IllegalArgumentException.class, () -> {
             supplierDaoJDBC.find(-1);
@@ -80,7 +80,7 @@ public class DaoJdbcTest {
     }
 
     @Test
-    public void invalidProductCategoryFindParameter() throws IllegalArgumentException {
+    void invalidProductCategoryFindParameter() throws IllegalArgumentException {
         ProductCategoryDaoJDBC productCategoryDaoJDBC = ProductCategoryDaoJDBC.getInstance();
         assertThrows(IllegalArgumentException.class, () -> {
             productCategoryDaoJDBC.find(-1);
